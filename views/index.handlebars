@@ -1,0 +1,90 @@
+<nav class="header">
+    <div class="bg-success text-center">
+        <h1 class="text-center text-light">Build - A - Burger</h1>
+    </div>
+</nav>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-1">
+            <ul class= "toBe">
+                <h1>Burgers to be consumed</h1>
+
+            {{#each burgers}}
+            {{#unless devoured}}
+            <li class="each">{{burger_names}} &emsp; <button class="eat"  data-id={{id}}>Consume</button></li>
+            {{/unless}}
+            </li>
+            {{/each}}
+            </ul>
+        </div>
+
+        
+        <div class="input-group col-lg-4 col-md-4 col-sm-1">
+            <form>
+                <input type="text" class="form-control formWidth" placeholder="Create a New Burger" name="Burger Name" id="newBurger" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" id="submit">Create</button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="col-lg-4 col-md-4 col-sm-1">
+            <ul>
+                <h1>Burgers that have been consumed</h1>
+                {{#each burgers}}
+                {{#if devoured}}
+                <li class="each">{{burger_names}}&emsp;</li>
+
+                {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+$(function(){
+    $(".eat").on("click", function(event) {
+        event.preventDefault();
+        const id = $(this).data("id");
+    
+        const consumed = {
+          burger_names: $('.id').val()
+        };
+        // Sends PUT request.
+        $.ajax("/api/burgers/" + id, {
+          type: "PUT",
+          data: consumed
+        }).then(
+          function() {
+            console.log("devoured", consumed);
+            // Reload the page to get the updated list
+            location.reload();
+          }
+        );
+    });
+
+    $("#submit").on("click", function (event) {
+        event.preventDefault();
+        const newBurger = {
+                burger_names: $("#newBurger").val().trim(),
+                devoured: 0
+            };
+            // Sends POST request.
+            $.ajax("/api/burgers", {
+                type: "POST",
+                data: newBurger
+            }).then(
+                function () {
+                    console.log("created new burger");
+                    // Reload the page to get the updated list
+                    location.reload();
+                }
+            );
+        });
+});
+
+</script>
