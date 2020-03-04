@@ -1,20 +1,32 @@
-<nav class="header">
-    <div class="bg-success text-center">
-        <h1 class="text-center text-light">Build - A - Burger</h1>
+
+    <div class="row">
+        <div id="bun"class="pt-5 header text-center col-lg-12 col-md-12 col-sm-12">
+        <h1 class="text-center text-light">Build</h1>
+        </div>
+
+
+        <div id="lettuce" class="header text-center col-lg-12 col-md-12 col-sm-12">
+            <h1 class="text-center text-light">- A -</h1>
+        </div>
+
+        <div id = "ketchup" class="header text-center col-lg-12 col-md-12 col-sm-12 mb-5">
+            <h1 class="text-center text-light">Burger</h1>
+        </div>
     </div>
-</nav>
 
 
 
-<div class="container">
+
+
+<div class="container text-light">
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-1">
-            <ul class= "toBe">
+            <ul class= "">
                 <h1>Burgers to be consumed</h1>
 
             {{#each burgers}}
             {{#unless devoured}}
-            <li class="each">{{burger_names}} &emsp; <button class="eat"  data-id={{id}}>Consume</button></li>
+            <li class="each">{{burger_names}} &emsp; <button class="eat button btn"  data-id={{id}}>Consume</button></li>
             {{/unless}}
             </li>
             {{/each}}
@@ -23,10 +35,11 @@
 
         
         <div class="input-group col-lg-4 col-md-4 col-sm-1">
-            <form>
-                <input type="text" class="form-control formWidth" placeholder="Create a New Burger" name="Burger Name" id="newBurger" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <img class="img-fluid"src="https://image-cdn.neatoshop.com/styleimg/56970/none/lightturquoise/default/345914-20;1489362004t.jpg" a="Burger picture">
+            <form class="form-inline">
+                <input type="text" class="form-control formWidth " placeholder="Create a New Burger" name="Burger Name" id="newBurger" aria-label="Recipient's username" aria-describedby="button-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit" id="submit">Create</button>
+                    <button class="btn button" type="submit" id="submit">Create</button>
                 </div>
             </form>
         </div>
@@ -45,6 +58,9 @@
     </div>
 </div>
 
+<div id="bun" class="mt-5 py-5 footer">
+
+</div>
 <script>
 $(function(){
     $(".eat").on("click", function(event) {
@@ -86,5 +102,4 @@ $(function(){
             );
         });
 });
-
 </script>
